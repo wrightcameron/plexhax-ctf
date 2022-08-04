@@ -1,6 +1,6 @@
 # Plex Hax CTF Challange Solutions
 
-![PlexTrac Logo](https://scoreboard.plexhax.com/files/5cfcabb348a45b30030f9969bdf45ab0/PlexTrac_Logo_Stacked_RGB.png)
+<p align="center"> <img alt="PlexTrac Logo" width="200" src="https://scoreboard.plexhax.com/files/5cfcabb348a45b30030f9969bdf45ab0/PlexTrac_Logo_Stacked_RGB.png"/></p>
 
 ## About
 
