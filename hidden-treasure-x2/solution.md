@@ -22,7 +22,32 @@ There is another header included, the last modified time.
 
 I don't have a lead at the moment 
 
+### Hint 
+
+The first hint just says, "dirb".  That sucks, I was already using the dirb tool to Web Content Scan the "Rhymes with: Smell Sock."  I could have used dirb before using the hint.
+
+### Dirb
+
+With dirb using the common.txt wordlist, the directory and file /register/index.php.  Checking out the index.php file, surprise it doesn't have php but this message.
+
+```text
+GET IS NOT the correct request method!
+
+Parameter NULL. Keep Trying
+```
+
+Using postman the request type can be changed.  Changing the request type to POST, the response from the website was,
+
+```html
+<p>POST is correct request method! Closer you are... closer still.</p>
+<p> Parameter NULL. Keep Trying</p>
+```
+
+Adding URL parameters or adding a json body didn't show the flag.  But I changed the request type to OPTIONS and using that the flag was shown in plain text.
 
 ## Solution
 
+Using dirb the file /register/index.php is shown.  With a GET request this file returns a plain text file saying to use a POST request.  Using POST request says were close, but actually the OPTIONS request shows the flag in plain text.
+
+Flag: PlexTrac_CTF=nominal_freelance_harps
 Answer
