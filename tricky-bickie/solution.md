@@ -10,7 +10,7 @@ Once you successfully complete this challenge you'll come across a string in thi
 
 ## Notes
 
-The link goes to a login page, asking for a username and password.  Another button goes to signing up.  Looking at the source this entire page is just an HTML from pointing to a PHP backend.  Both the login and sign up forms are part of the login, so signing up doesn't actually work.  Both forms hit the login.php route.
+The link goes to a login page, asking for a username and password.  Another button goes to signing up.  Looking at the source this entire page is just an HTML from pointing to a PHP backed.  Both the login and sign up forms are part of the login, so signing up doesn't actually work.  Both forms hit the login.php route.
 
 While the route could be looked at, another thing to note is that the site does put a cookie into my browser, this cookie name is "isauth" and the value is "ZmFsc2U=", if this cookie can be decrypted than we could generate the correct cookie and use that to auto login.
 

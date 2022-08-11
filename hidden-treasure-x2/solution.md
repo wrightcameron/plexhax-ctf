@@ -2,7 +2,7 @@
 
 ## Problem
 
-No prompt, just this "Once you succesfully complete this challange you'll come across a string in this format: PlexTrac_CTF=string. This is NOT the flag for points."
+No prompt, just this "Once you successfully complete this challenge you'll come across a string in this format: PlexTrac_CTF=string. This is NOT the flag for points."
 
 And a link to site https://hidden.plexhax.com/
 
@@ -12,11 +12,11 @@ And a link to site https://hidden.plexhax.com/
 
 ## Notes
 
-Clicking on the site leads to a plain text page that just says "yep".  Viewing page source the document isn't even HTML, but a plain text file with only "yep".  The Firefox debugger doesn't show much either with no Javascript present, no cookies either.
+Clicking on the site leads to a plain text page that just says "yep".  Viewing page source the document isn't even HTML, but a plain text file with only "yep".  The Firefox debugger doesn't show much either with no JavaScript present, no cookies either.
 
-Looking at the response, there is a Response header called ETag, with value "617a7a03-4".  The [ETag is an offical HTML header](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/ETag), but I don't see it comanlly used, so its worth investigation see if it can be decrypted.
+Looking at the response, there is a Response header called ETag, with value "617a7a03-4".  The [ETag is an official HTML header](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/ETag), but I don't see it commonly used, so its worth investigation see if it can be decrypted.
 
-The value "617a7a03-4" looks to be hex.  Though converting it to ascii doesn't show anything special, just reads "azz..".  This doesnt tell me much, and there isn't any reverse search of this meaning.
+The value "617a7a03-4" looks to be hex.  Though converting it to ASCII doesn't show anything special, just reads "azz..".  This doesn't tell me much, and there isn't any reverse search of this meaning.
 
 There is another header included, the last modified time.
 
@@ -28,7 +28,7 @@ The first hint just says, "dirb".  That sucks, I was already using the dirb tool
 
 ### Dirb
 
-With dirb using the common.txt wordlist, the directory and file /register/index.php.  Checking out the index.php file, surprise it doesn't have php but this message.
+With dirb using the common.txt word list, the directory and file /register/index.php.  Checking out the index.php file, surprise it doesn't have php but this message.
 
 ```text
 GET IS NOT the correct request method!

@@ -2,7 +2,7 @@
 
 ## Problem
 
-Volume X Density leads to a GET response from a Web API.  The problem itself also links to a open API yaml file that contains routes.  Challange is setup as a REST API web app that is being tested currently.
+Volume X Density leads to a GET response from a Web API.  The problem itself also links to a open API yaml file that contains routes.  Challenge is setup as a REST API web app that is being tested currently.
 
 ## Links
 
@@ -33,7 +33,7 @@ The site has a route GET route /plextrac/ctf/flag to return the flag, but a auth
 }
 ```
 
-There is lastly a POST route to register a new user /users/v1/register.  Now a user can pass a username, password, email in the body with the request.  But the user greated when used on users/v1/login will return a JWT but will not be able to get the flag from /plextrac/ctf/flag.  The response from the route returning back that you need to be an admin.
+There is lastly a POST route to register a new user /users/v1/register.  Now a user can pass a username, password, email in the body with the request.  But the user created when used on users/v1/login will return a JWT but will not be able to get the flag from /plextrac/ctf/flag.  The response from the route returning back that you need to be an admin.
 
 The solution it turns out is the model (MVC) or logic that handles the json sent to the backend is not policing the key and value pairs sent to it.  From the route /users/v1/_debug a password field is not shown, but a admin field is.  This means that we can try passing an admin field to the database.  
 
