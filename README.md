@@ -11,7 +11,7 @@ This repository is for notes, solutions, and scripts to solve the variety of cha
 | Challenge               | Available Points | Hints | Earned |
 |-------------------------|------------------|-------|--------|
 | Tricky Bickie           | 75		     | 0     | 75     |
-| Hidden Treasure x2      | 100		     | -20   | 70     |
+| Hidden Treasure x2      | 100		     | -20   | 80     |
 | Rhymes with: Smell Sock | 100		     | -50   | 50     |
 | Declastley              | 175	             | 0     | 175    |
 | volume x density        | 250              | 0     | 250    |
