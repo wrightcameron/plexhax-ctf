@@ -2,25 +2,17 @@
 
 <p align="center"> <img alt="PlexTrac Logo" width="300" src="https://scoreboard.plexhax.com/files/5cfcabb348a45b30030f9969bdf45ab0/PlexTrac_Logo_Stacked_RGB.png"/></p>
 
+Plex Hax CTF is a Capture the Flag site hosted by [PlexTrac](https://scoreboard.plexhax.com/). Hosted the week before DefCon August 1st through August 14th.
 
-Plex Hax CTF is a Capture the Flag site hosted by [PlexTrac](https://scoreboard.plexhax.com/). Hosted the week before DefCon Augest 1st through Auguest 14th.
+This repository is for notes, solutions, and scripts to solve the variety of challenges.
 
-This repository is for notes, solutions, and scripts to solve the variety of challanges.
+## Results - 2022
 
-TODO create table with challanges, and completions
+| Challenge               | Available Points | Hints | Earned |
+|-------------------------|------------------|-------|--------|
+| Tricky Bickie           | 75		     | 0     | 75     |
+| Hidden Treasure x2      | 100		     | -20   | 70     |
+| Rhymes with: Smell Sock | 100		     | -50   | 50     |
+| Declastley              | 175	             | 0     | 175    |
+| volume x density        | 250              | 0     | 250    |
 
-## Build
-
-Some problems may require the download of files from https://scoreboard.plexhax.com.  These files are not being hosted in this repository but they can be easily downloaded from the challanges themselves on scoreboard.plexhax.com or using the make file in solution directories.
-
-### Setting up challange
-
-```bash
-make
-```
-
-### Cleaning up challenge
-
-```bash
-make clean
-```
