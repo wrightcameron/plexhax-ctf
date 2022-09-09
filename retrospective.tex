@@ -1,0 +1,96 @@
+\documentclass{article}
+\usepackage{graphicx}
+
+\begin{document}
+
+\title{Plexhax CTF 2019 - Retrospective}
+\author{Cameron Wright}
+
+\maketitle
+
+\section{Challenges Retrospective}
+
+Brief summary of skills learned from each challenge.  The biggest thing to remember for any CTF challenges is build a good foundation of tools and scenarios and with those build a mental path too the flag.  Try not to get to complex early on as it may lead to a dead end while also knowing great tools and tips that can vastly increase the amount of ground covered.
+
+\subsection{Tricky Bickie}
+
+The site contained a cookie that stored Boolean false.  Changing this cookie either with Firefox debugger or Postman to True revealed the flag.
+
+This challenge was a simple Web Exploit, only thing to remember from this challenge is the first things to do when analyzing a website is to use Firefox debugging tools and to look though all static files sent to client.
+
+\subsection{Hidden Treasure x2}
+
+This challenge didn't have much of a prompt and the title didn't give anything away.  Looking at the static content with Firefox debugger makes it look like the solution is with the HTML headers.  But CTFs can be either really simple or really complex and going down the complex route can lead to a dead end.
+
+The first hint for this puzzle mentioned Dirb, the CLI tool for file and directory scanning a site.  Now this tool revealed a PHP file hidden on the server that Postman or Firefox debugger wouldn't have found.  This index.php then gave hints to try non regular HTML requests to the server and from that the flag was found.
+
+The take away from this challenge is that knowing more reconnaissance tools for sniffing these websites helps a ton.  I didn't know Dirb before this challenge and so now that I know about it I can try Dirb before even starting to mess with HTML headers.  Having a tool belt of simple tools for reconnaissance helps figure out the path forward.  Especially when the challenge name or prompt don't really give any hint on what the solution could be.
+
+\subsection{Rhymes with: Smell Sock}
+
+This challenge also had a name that didn't relate to the eventual solution.  The first steps taken was use Firefox debugger to find all current static content, but then knowing that some hidden files could be found due to the server running Apache the files .htaccess, robots.txt, and .DN\_Store were all tried manually.  This was when a search for a web content scanner like Dirb was found and used.
+
+Dirb didn't end up being the solution, it only revealed that the /cgi-bin/ existed.  With the second hint it was found out that with /cgi-bin/ and references to this server running an older version of Apache, the exploited is a reverse shell.  The tool Nikto was tried to also find the cgi\_mod but this tool takes too long, and wasn't needed after knowing that a reverse shell can be used.
+
+Knowing how a reverse shell works, and what it looks like to build one with TCP is a good skill or exploit to know about.  I wouldn't call it a tool, but an exploit that knowing how to do lead to solving this challenge.
+
+\subsection{Declastley}
+
+The fourth challenge was about using XML Exploitation to find the flag.  Originally a hint about using a transparent proxy with Burb was recommend.  Using Burb myself I didn't see the benefit of the tool.  It seems great for setting up the deployment of the payload, but knowing about the payload and how to build it for were more valuable.  I tried using Wireshark to view all data returned by the server from HTML requests.  This was a futile attempt, as no secret packets where sent from the server to the client.   Next the site was using XML to send form data from the client, knowing this quick Google search showed ways to try injecting code into this XML code.
+
+Injecting XML code to the server was done using Postman, and the response back from the server immediately showed that variables passed back were returned.
+
+\subsection{volume x density}
+
+The last challenge was solved by figuring out that the server doesn't prevent passing in other fields of the database.  In software this can happen when the backed is unpacking a dictionary and passing every key value pair to the database.  The route is not sanitizing or checking for this, so when the route for creating a user is passed admin:true, the web app allows this.
+
+The idea of using kargs to pass in N variables to a database shows how simple it would be to Occidental add this exploit when developing your own website.
+
+\section{Tools}
+
+Existing tools and new ones were found while completing these challenges, here is a brief summary of the tool and how it was used to solve problems.
+
+\subsection{Firefox Debugger}
+
+The Firefox (or Chrome) debugger is always a great starting tool for analyzing websites for exploits.  The debugger shows static files of html, css, and javascript.  Shows network traffic, and any cookies that might be stored.
+
+While {\bf Hidden Treasure x2} \& {\bf Rhymes with: Smell Sock} were much harder and required more knowledge in other web exploit tools.
+
+The Firefox debugger was the tool in solving {\bf Tricky Bickie}, with the ability to view and modify cookies the flag was found.  This could have been done in Postman as well. 
+
+\subsection{Postman}
+
+Once HTTP requests are known, or the site has notible routes a form may be calling.  Postman is a great tool for building a payload, checking different HTTP requests, modifying a cookie, or playing around with data sent in a URL or raw.  Firefox debugger can refresh or not keep some data as persistent as long you would want.  Doing things with Postman can keep things saved, and has tools to convert requests into code in case automation is needed later.
+
+\subsection{Curl}
+
+While Postman will always be a great tool for building HTML requests, the curl command is also a great way to send requests.  While jumping to Postman to start testing REST API is usually the next step after Firefox debugger.  Curl is a great tool for quickly trying out routes, or for trying out a URL from the command line.  Plus its great for including in documentation like the solutions.md that are apart of this plexhack-ctf repository.
+
+\subsection{Dirb}
+
+Dirb is a Web Content Scanner CLI tool. It looks for existing (and/or hidden) Web Objects. It basically works by launching a dictionary based attack against a web server and analyzing the responses.  When a challenge like Hidden Treasure x2 or Rhymes with: Smell Sock mentions that something is hidden while also not showing anything off that can be seen with Firefox debugger, dirb can help.
+
+\subsection{nikto}
+
+Web application CLI tool for finding vulnerabilities.  Unlike Dirb, nikto doesn't scan for web directories but is looking for other common vulnerabilities like if cgi-bin exists and is exploitable.  This tool does take a while to run though, so it isn't the best tool if the exploit has already been found.
+
+\subsection{Wireshark}
+
+Infamous packet capture tool.  Wireshark will save sessions of network traffic from either just the client computer or the entire network.  For this CTF wireshark was used to record all traffic sent from a Curl command to the Plex server to see if any extra packets were sent back.  Curl and Wireshark go well together when https requests from the client need to be checked for anything special.  This tool has a ton of featues, and I can't go over all of it in just this retrospective, I haven't even learned all of the capabilities while this was written.
+
+\subsection{Burp}
+
+Burp is a web exploit tool for setting up an analysis, intercepting traffic, and building payload tool against websites. The benefit of the tool is a much better way to intercept traffic and deploy payloads.  While someone hinted at using this tool for solving a challenge, I didn't end up needing it.  Burb while great, does alot more work, and frankly do these challenges to learn how to solve and build exploits not have a tool like Burb do all the work for me.
+
+\section{Exploits}
+
+\begin{itemize}
+    \item Reverse Shell
+    \item XML Injection
+\end{itemize}
+
+% \subsection{Reverse Shell}
+
+% \subsection{XML Injection
+
+\end{document}

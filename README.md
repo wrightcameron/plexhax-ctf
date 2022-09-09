@@ -1,7 +1,5 @@
 # Plex Hax CTF Challange Solutions
 
-<p align="center"> <img alt="PlexTrac Logo" width="300" src="https://scoreboard.plexhax.com/files/5cfcabb348a45b30030f9969bdf45ab0/PlexTrac_Logo_Stacked_RGB.png"/></p>
-
 Plex Hax CTF is a Capture the Flag site hosted by [PlexTrac](https://scoreboard.plexhax.com/). Hosted the week before DefCon August 1st through August 14th.
 
 This repository is for notes, solutions, and scripts to solve the variety of challenges.
